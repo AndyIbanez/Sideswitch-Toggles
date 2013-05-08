@@ -1,0 +1,10 @@
+{
+	entry = {
+		bundle = CydeswitchSettings;
+		cell = PSLinkCell;
+		detail = "CydeswitchSettingsListController";
+		icon = "CydeswitchSettings.png";
+		isController = 1;
+		label = "Cydeswitch Settings";
+	};
+}
