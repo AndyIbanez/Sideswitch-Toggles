@@ -1,7 +1,7 @@
 Package: com.andyibanez.Cydeswitch
 Name: Cydeswitch
 Depends: mobilesubstrate
-Version: 0.0.1
+Version: 1.0.0
 Architecture: iphoneos-arm
 Description: Control your device's ringer switch to do whatever you want.
 Maintainer: Leonnears
