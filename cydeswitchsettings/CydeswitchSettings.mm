@@ -38,7 +38,7 @@
 		} 
 	}
 	
-	if([[[cell textLabel] text] isEqualToString:[settings objectForKey:@"pluginToExecute"]])
+	if(indexPath.row == 0 && [[[cell textLabel] text] isEqualToString:[settings objectForKey:@"pluginToExecute"]])
 	{
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		currentIndexPath = [indexPath retain];
@@ -146,6 +146,16 @@
 @implementation CydeswitchSettingsListController
 - (id)specifiers {
 	if(_specifiers == nil) {
+		//Check that settings plist exists. Create if it doesn't.
+		NSMutableDictionary *settings = [NSMutableDictionary dictionaryWithContentsOfFile:
+									[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Cydeswitch.plist"]];
+		if(settings == nil)
+		{
+			settings = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"default", @"pluginToExecute", nil];
+			[settings writeToFile:
+					[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Cydeswitch.plist"]
+				atomically:YES];
+		}
 		tvc = [[PluginsViewController alloc] initWithStyle:UITableViewStyleGrouped];
 		
 		tvc.tableView.frame = CGRectMake(0, 0, [self.view frame].size.width, [self.view frame].size.height);
