@@ -2,11 +2,7 @@ static NSBundle *customPlugin = nil;
 
 %hook SpringBoard
 -(void)ringerChanged:(int)changed
-{
-	//changed = 0 WHEN OFF
-	//changed = 1 WHEN ON
-	//^ The above statements may be obvious, buuut you know...
-	
+{	
 	NSMutableDictionary *settings = [NSMutableDictionary dictionaryWithContentsOfFile:
 									[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Cydeswitch.plist"]];
 	if(settings == nil)
@@ -31,8 +27,9 @@ static NSBundle *customPlugin = nil;
 		id loadedPlugin;
 		if((loadedPluginClass = [customPlugin principalClass]))
 		{
+			NSLog(@"LOADED BUNDLE %@", [settings objectForKey:@"pluginToExecute"]);
 			loadedPlugin = [[loadedPluginClass alloc] init];
-			if(changed == 1)
+			if(changed == 0)
 			{
 				id shouldAct;
 				if([loadedPlugin respondsToSelector:@selector(shouldBeMuted)])
