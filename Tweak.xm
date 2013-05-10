@@ -27,7 +27,6 @@ static NSBundle *customPlugin = nil;
 		id loadedPlugin;
 		if((loadedPluginClass = [customPlugin principalClass]))
 		{
-			NSLog(@"LOADED BUNDLE %@", [settings objectForKey:@"pluginToExecute"]);
 			loadedPlugin = [[loadedPluginClass alloc] init];
 			if(changed == 0)
 			{
