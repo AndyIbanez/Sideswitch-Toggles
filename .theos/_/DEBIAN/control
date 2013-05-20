@@ -1,9 +1,10 @@
 Package: com.andyibanez.SideSwitch
 Name: SideSwitch
 Depends: mobilesubstrate
-Version: 1.0.1
+Version: 1.0.1-1
 Architecture: iphoneos-arm
 Description: Control your device's ringer switch to do whatever you want.
 Maintainer: Leonnears
 Author: Leonnears
 Section: Tweaks
+Installed-Size: 64
