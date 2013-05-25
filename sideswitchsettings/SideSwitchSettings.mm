@@ -31,7 +31,7 @@
 	}else
 	{
 		//Get the plugin's display name.
-		currentPlugin = [[NSBundle alloc] initWithPath:[NSString stringWithFormat:@"/Library/Cydeswitch/plugins/%@", [plugins objectAtIndex:indexPath.row - 1], nil]];
+		currentPlugin = [[NSBundle alloc] initWithPath:[NSString stringWithFormat:@"/Library/Sideswitch/plugins/%@", [plugins objectAtIndex:indexPath.row - 1], nil]];
 		cell.textLabel.text = [[currentPlugin localizedInfoDictionary] objectForKey:@"CFBundleDisplayName"];
 		if(cell.textLabel.text == nil)
 		{
@@ -76,7 +76,7 @@
 		[settings setObject:[plugins objectAtIndex:indexPath.row - 1] forKey:@"pluginToExecute"];
 	}
 	[settings writeToFile:
-		[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Cydeswitch.plist"]
+		[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Sideswitch.plist"]
 				atomically:YES];
 }
 
@@ -93,15 +93,15 @@
 
 -(void)startPluginsDir
 {
-	plugins = [[self listFileAtPath:@"/Library/Cydeswitch/plugins"] retain];
+	plugins = [[self listFileAtPath:@"/Library/Sideswitch/plugins"] retain];
 	settings = [[NSMutableDictionary dictionaryWithContentsOfFile:
-									[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Cydeswitch.plist"]] retain];
+									[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Sideswitch.plist"]] retain];
 	if(settings == nil)
 	{
 		//If not found, let's create it for future use.
 		settings = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"default", @"pluginToExecute", nil];
 		[settings writeToFile:
-					[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Cydeswitch.plist"]
+					[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Sideswitch.plist"]
 				atomically:YES];
 	}
 }
@@ -137,7 +137,7 @@
 -(void)respring;
 @end
 
-@interface CydeswitchSettingsListController : PSListController
+@interface SideswitchSettingsListController : PSListController
 {
 	PluginsViewController *tvc;
 }
@@ -145,17 +145,17 @@
 -(void)dealloc;
 @end
 
-@implementation CydeswitchSettingsListController
+@implementation SideswitchSettingsListController
 - (id)specifiers {
 	if(_specifiers == nil) {
 		//Check that settings plist exists. Create if it doesn't.
 		NSMutableDictionary *settings = [NSMutableDictionary dictionaryWithContentsOfFile:
-									[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Cydeswitch.plist"]];
+									[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Sideswitch.plist"]];
 		if(settings == nil)
 		{
 			settings = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"default", @"pluginToExecute", nil];
 			[settings writeToFile:
-					[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Cydeswitch.plist"]
+					[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Sideswitch.plist"]
 				atomically:YES];
 		}
 		tvc = [[PluginsViewController alloc] initWithStyle:UITableViewStyleGrouped];
