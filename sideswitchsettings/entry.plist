@@ -5,6 +5,6 @@
 		detail = "SideSwitchSettingsListController";
 		icon = "SideSwitchSettings.png";
 		isController = 1;
-		label = SideSwitch;
+		label = "Sideswitch Settings";
 	};
 }

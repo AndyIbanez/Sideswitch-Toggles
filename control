@@ -1,5 +1,5 @@
-Package: com.andyibanez.SideSwitch
-Name: SideSwitch
+Package: com.andyibanez.sideswitch
+Name: Sideswitch
 Depends: mobilesubstrate
 Version: 1.0.2
 Architecture: iphoneos-arm

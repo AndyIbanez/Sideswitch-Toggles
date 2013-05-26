@@ -4,12 +4,12 @@ static NSBundle *customPlugin = nil;
 -(void)ringerChanged:(int)changed
 {	
 	NSMutableDictionary *settings = [NSMutableDictionary dictionaryWithContentsOfFile:
-									[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.SideSwitch.plist"]];
+									[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Sideswitch.plist"]];
 	if(settings == nil)
 	{
 		settings = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"default", @"pluginToExecute", nil];
 		[settings writeToFile:
-					[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.SideSwitch.plist"]
+					[NSString stringWithFormat:@"%@/Library/Preferences/%@", NSHomeDirectory(), @"com.AndyIbanez.Sideswitch.plist"]
 				atomically:YES];
 	}
 	
